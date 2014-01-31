@@ -10,7 +10,7 @@
 	  set to matching label. When matched to a node label is style with an undeline. If users edits label to activate autocomple
 	  then underline style is removed and selectedValue is set to 0. 
 	- Parents are selectable and thus only part of autocomple only if parentsSelectable=true
-	
+	 OK     
 	-->
 	
 	<mx:Binding source="cboTree.selectedValue.toString()" destination="txtSelectedValue.text"/>
