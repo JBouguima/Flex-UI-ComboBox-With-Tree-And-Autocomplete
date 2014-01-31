@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Label xmlns:mx="http://www.adobe.com/2006/mxml" initialize="init()">
+	<mx:Metadata>
+		[ExcludeClass]
+	</mx:Metadata>
+	<mx:Script>
+		<![CDATA[
+			import flash.events.Event;
+			import mx.events.FlexEvent;
+			import offerta.autoCompleteComboBox.AutoCompleteListData;
+			import offerta.autoCompleteComboBox.AutoCompleteComboBox;
+
+			public function init():void{
+				this.addEventListener(FlexEvent.DATA_CHANGE,onDataChange);
+			}
+			
+			public function onDataChange(e:FlexEvent):void{
+				var ld : AutoCompleteListData = AutoCompleteListData(this.listData)
+				// added to handle situation where listData is null because dataprovider has no data 
+				if(!ld){
+					return;
+				}
+				var label : String = data.DescriptionText
+				if(ld.typeAheadText != ''){
+					// adding G flag to the RegExp would replace all instances instead of just first one 
+					// removed it because it does not seem to be standard 
+					var regEx : RegExp = new RegExp(ld.typeAheadText ,'ig');
+					this.htmlText = label.replace(regEx , '<b>$&</b>');
+				} else {
+					this.htmlText = label;
+				}
+			}
+						
+		]]>
+	</mx:Script>	
+</mx:Label>

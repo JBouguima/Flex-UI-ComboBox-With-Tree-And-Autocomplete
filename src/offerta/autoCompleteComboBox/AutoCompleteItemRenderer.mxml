@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Label xmlns:mx="http://www.adobe.com/2006/mxml" initialize="init()">
+	<mx:Metadata>
+		[ExcludeClass]
+	</mx:Metadata>
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.listClasses.ListBase;
+			import flash.events.Event;
+			import mx.events.FlexEvent;
+
+			public function init():void{
+				this.addEventListener(FlexEvent.DATA_CHANGE,onDataChange);
+			}
+			
+			public function onDataChange(e:FlexEvent):void{
+				var ld : AutoCompleteListData = AutoCompleteListData(this.listData)
+				// added to handle situation where listData is null because dataprovider has no data 
+				if(!ld){
+					return;
+				}
+				if(ld.typeAheadText != ''){
+					// adding G flag to the RegExp would replace all instances instead of just first one 
+					// removed it because it does not seem to be standard 
+					var regEx : RegExp = new RegExp(ld.typeAheadText ,'i');
+//					this.htmlText = data.label.replace(regEx , '<b>$&</b>');
+					this.htmlText = AutoCompleteComboBox(ld.autoCompleteComboBox).itemToLabel(data).replace(regEx , '<b>$&</b>');
+				} else {
+					if(ld.autoCompleteComboBox){
+						this.htmlText = AutoCompleteComboBox(ld.autoCompleteComboBox).itemToLabel(data);
+					} else {
+						// really this situation should never occur 
+						this.htmlText = ListBase(this.listData.owner).itemToLabel(data);
+					}
+				}
+			}
+			
+		]]>
+	</mx:Script>	
+</mx:Label>
