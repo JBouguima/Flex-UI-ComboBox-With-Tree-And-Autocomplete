@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:components="offerta.monkeywrench.components.*" layout="absolute" minWidth="955" minHeight="600">
-
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:components="offerta.monkeywrench.components.*" layout="absolute" 
+xmlns:offerta="offerta.autoCompleteComboBox.*"  minWidth="955" minHeight="600">
 	<!--
 	
 	Todo:
@@ -19,9 +19,9 @@
 	
 	<mx:Script>
 		<![CDATA[
-			import com.flextras.autoCompleteComboBox.AutoCompleteCollectionEvent;
-			import com.flextras.autoCompleteComboBox.AutoCompleteComboBoxEvent;
-			import com.flextras.dbFilter.flex.SampleVO;
+			import offerta.autoCompleteComboBox.AutoCompleteCollectionEvent;
+			import offerta.autoCompleteComboBox.AutoCompleteComboBoxEvent;
+			import offerta.dbFilter.flex.SampleVO;
 			import mx.controls.Alert;
 			import mx.collections.ArrayCollection;
 			import mx.events.FlexEvent;
@@ -86,10 +86,10 @@
 									 valueField="DescriptionText" x="100" y="100" width="100%"
 									 dataProvider="{dsTest}" parentsSelectable="false"/>
 			<mx:TextInput x="100" y="150" width="100%" id="txtSelectedValue"/>
-			<flextras:AutoCompleteComboBox id="autoCompleteComboBox" 
+			<offerta:AutoCompleteComboBox id="autoCompleteComboBox" 
 					dataProvider="{dsTest}" 
 					autoCompleteEnabled="true" 
-					itemRenderer="com.flextras.itemRenderer.AutoCompleteItemRendererMod"
+					itemRenderer="offerta.itemRenderer.AutoCompleteItemRendererMod"
 					width="100%"
 					creationComplete="autoCompleteComboBox_creationCompleteHandler(event)"
 					autoCompleteDataProviderFiltered="autoCompleteComboBox_autoCompleteDataProviderFilterBeginHandler(event)"
