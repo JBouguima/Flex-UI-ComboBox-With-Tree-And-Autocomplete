@@ -81,9 +81,13 @@ package offerta.autoCompleteComboBox
 		/** 
 		 * constructor
 		 */
-		public function AutoCompleteCollectionEvent(type:String, argFilterFunction : Function = null, bubbles:Boolean=false, cancelable:Boolean=false, kind:String=CollectionEventKind.REFRESH, location:int=-1, oldLocation:int=-1, items:Array=null)
+		public function AutoCompleteCollectionEvent(type:String, argFilterFunction : Function = null, 
+													bubbles:Boolean=false, cancelable:Boolean=false, 
+													kind:String=null, 
+													location:int=-1, oldLocation:int=-1, items:Array=null)
 		{
 			this.filterFunction = argFilterFunction;
+			if(kind == null) kind=CollectionEventKind.REFRESH;
 			super(type, bubbles, cancelable, kind, location, oldLocation, items);
 		}
 
